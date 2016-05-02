@@ -11,38 +11,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(value="/user")
+@RequestMapping(value="/animal")
 @RestController
 public class AnimalController {
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ResponseEntity< List<Animal> > listAllUsers() {
+	public ResponseEntity< List<Animal> > listAllAnimais() {
 		
-		//dados fake
-		List<Animal> listaUsuariosFake = new ArrayList<Animal>();
-		listaUsuariosFake.add(new Animal(1,"Daniel","End1"));
-		listaUsuariosFake.add(new Animal(2,"Ruan","End2"));
-		listaUsuariosFake.add(new Animal(3,"Atylla","End3"));
+		List<Animal> listaAnimaisExemplo = new ArrayList<Animal>();
+		listaAnimaisExemplo.add(new Animal(1,"Bichano","Gato"));
+		listaAnimaisExemplo.add(new Animal(2,"Totó","Cachorro"));
+		listaAnimaisExemplo.add(new Animal(3,"AuAu","Cachorro"));
 		
 		return new ResponseEntity< List<Animal> >
-			(listaUsuariosFake, HttpStatus.OK);
+			(listaAnimaisExemplo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-	public ResponseEntity<Animal> getUser(@PathVariable String id) {
+	public ResponseEntity<Animal> getAnimal(@PathVariable String id) {
 		
-		Animal userFake = new Animal(1,"Daniel","End1");
+		Animal animalExemplo = new Animal(1,"Bichano","Gato");
 		
-		return userFake == null ? 
+		return animalExemplo == null ? 
 				new ResponseEntity<Animal>(HttpStatus.NOT_FOUND) : 
-					new ResponseEntity<Animal>(userFake, HttpStatus.OK);
+					new ResponseEntity<Animal>(animalExemplo, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ResponseEntity<String> createUser(@RequestBody Animal participant) {
+	public ResponseEntity<String> createAnimal(@RequestBody Animal participant) {
 
 		try {
-			//salvar
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 
 		} catch (Exception e) {
@@ -51,10 +49,9 @@ public class AnimalController {
 	}
 
 	@RequestMapping(value="/", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUser(@RequestBody Animal participant) {
+	public ResponseEntity<String> updateAnimal(@RequestBody Animal participant) {
 
 		try {
-			//atualizar
 			return new ResponseEntity<String>(HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -64,18 +61,16 @@ public class AnimalController {
 	
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<Animal> deleteUserPorId(@PathVariable String id) {
+	public ResponseEntity<Animal> deleteAnimalPorId(@PathVariable String id) {
 	
 		try {
-			Animal userFake = null;
-			//buscar o usu�rio por id
+			Animal animalExemplo = null;
 			
-			if(userFake == null) {
+			if(animalExemplo == null) {
 				return new ResponseEntity<Animal>(HttpStatus.NOT_FOUND);
 			}
 			
-			//deleta o usu�rio no banco de dados
-			return new ResponseEntity<Animal>(userFake, HttpStatus.OK);
+			return new ResponseEntity<Animal>(animalExemplo, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			return new ResponseEntity<Animal>(HttpStatus.INTERNAL_SERVER_ERROR);

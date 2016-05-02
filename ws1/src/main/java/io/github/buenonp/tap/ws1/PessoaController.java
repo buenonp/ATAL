@@ -16,29 +16,29 @@ import org.springframework.web.bind.annotation.RestController;
 public class PessoaController {
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ResponseEntity< List<Pessoa> > listAllUsers() {
+	public ResponseEntity< List<Pessoa> > listAllPessoas() {
 		
-		List<Pessoa> listaUsuariosFake = new ArrayList<Pessoa>();
-		listaUsuariosFake.add(new Pessoa(1,"Bueno","Rua etc e tal, N 56, Campina Grande, Paraíba, Brasil"));
-		listaUsuariosFake.add(new Pessoa(2,"Carioca","Rua qualquer, N 123, Campina Grande, Paraíba, Brasil"));
-		listaUsuariosFake.add(new Pessoa(3,"Rayana","Rua não me interessa, N 9090, Campina Grande, Paraíba, Brasil"));
+		List<Pessoa> listaPessoasExemplo = new ArrayList<Pessoa>();
+		listaPessoasExemplo.add(new Pessoa(1,"Bueno", "9876543-SDS/PB", "123.456.789-00", "Rua etc e tal, N 56, Campina Grande, Paraíba, Brasil"));
+		listaPessoasExemplo.add(new Pessoa(2,"Carioca", "9876543-SDS/PB", "123.456.789-00", "Rua qualquer, N 123, Campina Grande, Paraíba, Brasil"));
+		listaPessoasExemplo.add(new Pessoa(3,"Rayana", "9876543-SDS/PB", "123.456.789-00", "Rua não me interessa, N 9090, Campina Grande, Paraíba, Brasil"));
 		
 		return new ResponseEntity< List<Pessoa> >
-			(listaUsuariosFake, HttpStatus.OK);
+			(listaPessoasExemplo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-	public ResponseEntity<Pessoa> getUser(@PathVariable String id) {
+	public ResponseEntity<Pessoa> getPessoa(@PathVariable String id) {
 		
-		Pessoa userFake = new Pessoa(1,"Bueno","Rua etc e tal, N 56, Campina Grande, Paraíba, Brasil");
+		Pessoa pessoaExemplo = new Pessoa(1,"Bueno", "9876543-SDS/PB", "123.456.789-00", "Rua etc e tal, N 56, Campina Grande, Paraíba, Brasil");
 		
-		return userFake == null ? 
+		return pessoaExemplo == null ? 
 				new ResponseEntity<Pessoa>(HttpStatus.NOT_FOUND) : 
-					new ResponseEntity<Pessoa>(userFake, HttpStatus.OK);
+					new ResponseEntity<Pessoa>(pessoaExemplo, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ResponseEntity<String> createUser(@RequestBody Pessoa participant) {
+	public ResponseEntity<String> createPessoa(@RequestBody Pessoa participant) {
 
 		try {
 			return new ResponseEntity<String>(HttpStatus.CREATED);
@@ -49,7 +49,7 @@ public class PessoaController {
 	}
 
 	@RequestMapping(value="/", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUser(@RequestBody Pessoa participant) {
+	public ResponseEntity<String> updatePessoa(@RequestBody Pessoa participant) {
 
 		try {
 			
@@ -62,16 +62,16 @@ public class PessoaController {
 	
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<Pessoa> deleteUserPorId(@PathVariable String id) {
+	public ResponseEntity<Pessoa> deletePessoaPorId(@PathVariable String id) {
 	
 		try {
-			Pessoa userFake = null;
+			Pessoa pessoaExemplo = null;
 			
-			if(userFake == null) {
+			if(pessoaExemplo == null) {
 				return new ResponseEntity<Pessoa>(HttpStatus.NOT_FOUND);
 			}
 			
-			return new ResponseEntity<Pessoa>(userFake, HttpStatus.OK);
+			return new ResponseEntity<Pessoa>(pessoaExemplo, HttpStatus.OK);
 			
 		} catch (Exception e) {
 			return new ResponseEntity<Pessoa>(HttpStatus.INTERNAL_SERVER_ERROR);

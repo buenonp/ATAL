@@ -11,38 +11,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping(value="/user")
+@RequestMapping(value="/carro")
 @RestController
-public class UserController {
+public class CarroController {
 
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ResponseEntity< List<User> > listAllUsers() {
+	public ResponseEntity< List<Carro> > listAllCarros() {
 		
-		//dados fake
-		List<User> listaUsuariosFake = new ArrayList<User>();
-		listaUsuariosFake.add(new User(1,"Daniel","End1"));
-		listaUsuariosFake.add(new User(2,"Ruan","End2"));
-		listaUsuariosFake.add(new User(3,"Atylla","End3"));
+		List<Carro> listaCarrosExemplo = new ArrayList<Carro>();
+		listaCarrosExemplo.add(new Carro(1,"PMD-3423","Gol"));
+		listaCarrosExemplo.add(new Carro(2,"ETS-5739","Corsa"));
+		listaCarrosExemplo.add(new Carro(3,"SJN-9065","Camaro"));
 		
-		return new ResponseEntity< List<User> >
-			(listaUsuariosFake, HttpStatus.OK);
+		return new ResponseEntity< List<Carro> >
+			(listaCarrosExemplo, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET)
-	public ResponseEntity<User> getUser(@PathVariable String id) {
+	public ResponseEntity<Carro> getCarro(@PathVariable String id) {
 		
-		User userFake = new User(1,"Daniel","End1");
+		Carro carroExemplo = new Carro(1,"PMD-3423","Gol");
 		
-		return userFake == null ? 
-				new ResponseEntity<User>(HttpStatus.NOT_FOUND) : 
-					new ResponseEntity<User>(userFake, HttpStatus.OK);
+		return carroExemplo == null ? 
+				new ResponseEntity<Carro>(HttpStatus.NOT_FOUND) : 
+					new ResponseEntity<Carro>(carroExemplo, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ResponseEntity<String> createUser(@RequestBody User participant) {
+	public ResponseEntity<String> createCarro(@RequestBody Carro participant) {
 
 		try {
-			//salvar
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 
 		} catch (Exception e) {
@@ -51,10 +49,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/", method = RequestMethod.PUT)
-	public ResponseEntity<String> updateUser(@RequestBody User participant) {
+	public ResponseEntity<String> updateCarro(@RequestBody Carro participant) {
 
 		try {
-			//atualizar
 			return new ResponseEntity<String>(HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -64,21 +61,19 @@ public class UserController {
 	
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-	public ResponseEntity<User> deleteUserPorId(@PathVariable String id) {
+	public ResponseEntity<Carro> deleteCarroPorId(@PathVariable String id) {
 	
 		try {
-			User userFake = null;
-			//buscar o usu�rio por id
+			Carro carroExemplo = null;
 			
-			if(userFake == null) {
-				return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+			if(carroExemplo == null) {
+				return new ResponseEntity<Carro>(HttpStatus.NOT_FOUND);
 			}
 			
-			//deleta o usu�rio no banco de dados
-			return new ResponseEntity<User>(userFake, HttpStatus.OK);
+			return new ResponseEntity<Carro>(carroExemplo, HttpStatus.OK);
 			
 		} catch (Exception e) {
-			return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Carro>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

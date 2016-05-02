@@ -13,53 +13,65 @@ public class Pessoa implements Serializable {
 	
 	@Id
 	private int id;
-	private String name;
-	private String address;
+	private String nome;
+	private String cpf;
+	private String rg;
+	private String endereco;
 	
 	public Pessoa() {
 	}
 
-
-	public Pessoa(int id, String name, String address) {
+	public Pessoa(int id, String nome, String cpf, String rg, String endereco) {
 		this.id = id;
-		this.name = name;
-		this.address = address;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.rg = rg;
+		this.endereco = endereco;
 	}
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
 
-
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-
-	public String getAddress() {
-		return address;
+	public String getCpf() {
+		return cpf;
 	}
 
-
-	public void setAddress(String address) {
-		this.address = address;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
+	public String getRg() {
+		return rg;
+	}
+
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", address=" + address + "]";
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", rg=" + rg + ", endereco=" + endereco + "]";
 	}
 
 }
